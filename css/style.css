@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+body {
+    background-color: #28223F;
+    font-family: Montserrat, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+
+
+
+/* ! =========== Input Area ================= */
+
+.searcher {
+    transition: all 1s;
+    border: 1px solid #03BFCB;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    background-color: #27252545;
+    padding: 1rem;
+    padding-top: 0;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: .2rem;
+    transition: all 1s;
+    margin-top: 1rem;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button,
+.trash {
+    margin: 0.5 rem;
+    border-radius: 50%;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    background: #7c7c7c2b;
+    color: #03BFCB;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-left: 1rem;
+}
+
+.button:hover {
+    background-color: #7c7c7c6b;
+}
+
+input.search-bar {
+    border: none;
+    outline: none;
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    background-color: #7c7c7c2b;
+    color: white;
+    font-family: inherit;
+    /* font-size: 2rem; */
+    width: 15rem;
+    height: 2rem;
+    /* margin-right: 1rem; */
+
+}
+
+.feedback-container {
+    height: 5rem;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.feedback {
+    /* margin: 2rem; */
+    font-family: 'Roboto Mono', monospace;
+    padding: .5rem 2rem;
+    border: 2px solid red;
+    border-radius: 2rem;
+    color: white;
+    display: none;
+
+}
+
+.title h1 {
+    margin: 1rem;
+
+}
+
+.title {
+    animation: color-change 10s linear infinite;
+}
+
+@keyframes color-change {
+
+    0% {
+        filter: hue-rotate(0deg)
+    }
+
+    100% {
+        filter: hue-rotate(360deg)
+    }
+}
+
+/* .rainbow{ } */
+
+/* ! profile cards */
+
+.profiles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+
+.card-container {
+    background-color: #231E39;
+    color: #B3B8CD;
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    width: 19rem;
+    /* height: 25rem; */
+    max-height: 25rem;
+    overflow: hidden;
+    padding: 1.4rem;
+    margin: .5rem 0 2rem 0;
+}
+
+.card-container p {
+    font-size: 1rem;
+}
+
+.card-container .pro {
+    color: #231E39;
+    background-color: #FEBB0B;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 7px;
+    position: absolute;
+    top: 1.3rem;
+    left: 1.6rem;
+}
+
+.card-container .round {
+    border: 1px solid #03BFCB;
+    border-radius: 50%;
+    padding: 7px;
+}
+
+.card-container img {
+    width: 8rem;
+}
+
+.bio,
+.location,
+.name {
+    margin: 0;
+    padding: .3rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+a {
+    background-color: #03BFCB;
+    border: 1px solid #03BFCB;
+    border-radius: 5px;
+    color: #231E39;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-weight: 900;
+
+    transition: all .5s linear;
+}
+
+.buttons a:hover {
+    color: #03BFCB;
+    background-color: #090325;
+    /* background-color: white; */
+    /* font-weight: 800; */
+}
+
+.infos {
+    background-color: #1F1A36;
+    text-align: left;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.infos p {
+    font-size: 1rem;
+}
+
+
+.infos h4,
+.infos p {
+    margin: 1rem;
+
+}
+
+
+@media screen and (max-width: 800px) {
+    .searcher {
+        width: fit-content;
+        min-width: 19rem;
+    }
+
+    input.search-bar {
+        width: fit-content;
+    }
+
+    .searchArea {
+        width: fit-content;
+
+    }
+
+    .card-container {
+        min-width: 18rem;
+    }
+
+}
