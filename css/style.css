@@ -14,12 +14,7 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-
 }
-
-
-
 
 /* ! =========== Input Area ================= */
 
@@ -95,12 +90,10 @@ input.search-bar {
     border-radius: 2rem;
     color: white;
     display: none;
-
 }
 
 .title h1 {
     margin: 1rem;
-
 }
 
 .title {
