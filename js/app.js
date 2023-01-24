@@ -5,9 +5,9 @@ const profiles = $("section .profiles");
 form.submit((e) => {
   e.preventDefault();
   if (input.val().replace(/\s/g, "") === "") {
-    msg.show();
     msg.text("Please enter a valid username");
-    timer(3000);
+    msg.fadeToggle(2000);
+    timer();
     return;
   }
   getUserData();
@@ -29,34 +29,32 @@ const getUserData = async () => {
         followers,
         login,
       } = response;
-      const profileNamesArray = Array.from($(".card-container"));
-      console.log(profileNamesArray);
+      const profileNamesArray = Array.from($(".card-container")); 
       if (!name || !location) {
-        msg.show();
         msg.text(`${login} not specified his informations!`);
-        timer(5000);
+        msg.fadeToggle(2000);
+        timer();
       }
       if (profileNamesArray.length > 0) {
         const filteredArray = profileNamesArray.filter(
           (profileCard) => $(profileCard).find(" h2").text() == name
         );
         if (filteredArray.length > 0) {
-          msg.show();
           msg.text(
             `You already searched the ${name}, Please search for another profile`
           );
-          timer(5000);
+          msg.fadeToggle(2000);
+          timer();
           return;
-        } else if (profiles.children.length > 5) {
-          msg.show();
-
+        } else if (profileNamesArray.length > 5) {
           msg.text(`You can only check for 6 profiles`);
-          timer(5000);
+          msg.fadeToggle(2000);
+          timer();
           $(".container").append("<hr>");
           return;
         }
       }
-      profiles.append(`
+      profiles.prepend(`
       <div class="card-container">
             <span class="pro">Github</span>
             <img class="round" src="${avatar_url}" alt="user" />
@@ -79,35 +77,30 @@ const getUserData = async () => {
         </div> 
       `);
     },
-    beforeSend: (request) => {
-      //   console.log("before ajax send");
-    },
+    // beforeSend: (request) => {
+    //   console.log("before ajax send");
+    // },
     complete: () => {
       form.trigger("reset");
     },
     error: (XMLHttpRequest) => {
       if ((XMLHttpRequest.status = 404)) {
-        msg.show();
-        // msg.fadeOut(3000);
         msg.text(`We can't find the ${input.val()}'s profile`);
-        timer(5000);
-        // return;
+        msg.fadeToggle(2000);
+        timer();
       } else {
         msg.text(XMLHttpRequest.status);
-        timer(5000);
+        msg.fadeToggle(2000);
+        timer();
       }
     },
   });
 };
-
-function timer(time) {
+function timer() {
   setTimeout(() => {
-    msg.text("");
-    msg.hide();
-  }, time);
+    msg.fadeToggle(1000);
+  });
 }
-
-$(".trash").click((e) => {
-  profiles.empty();
-  e.preventDefault();
+$(".trash").click(() => {
+  profiles.empty(); 
 });
