@@ -6,9 +6,7 @@ form.submit((e) => {
   e.preventDefault();
   // if (input.val().replace(/\s/g, "") === "") {
   if (input.val().trim() === "") {
-    msg.text("Please enter a valid username");
-    timer();
-    // msg.fadeToggle(2000);
+    timer("Please enter a valid username");
     return;
   }
   getUserData();
@@ -32,25 +30,19 @@ const getUserData = async () => {
       } = response;
       const profileNamesArray = Array.from($(".card-container"));
       if (!name || !location) {
-        msg.text(`${login} not specified his informations!`);
-        // msg.fadeToggle(2000);
-        timer();
+        timer(`${login} not specified his informations!`);
       }
       if (profileNamesArray.length > 0) {
         const filteredArray = profileNamesArray.filter(
           (profileCard) => $(profileCard).find(" h2").text() == name
         );
-        if (filteredArray.length > 0) {
-          msg.text(
+        if (filteredArray.length > 0) { 
+          timer(
             `You already searched the ${name}, Please search for another profile`
           );
-          // msg.fadeToggle(2000);
-          timer();
           return;
         } else if (profileNamesArray.length > 5) {
-          msg.text(`You can only check for 6 profiles`);
-          // msg.fadeToggle(2000);
-          timer();
+          timer(`You can only check for 6 profiles`);
           $(".container").append("<hr>");
           return;
         }
@@ -86,31 +78,25 @@ const getUserData = async () => {
     },
     error: (XMLHttpRequest) => {
       if ((XMLHttpRequest.status = 404)) {
-        msg.text(`We can't find the ${input.val()}'s profile`);
-        // msg.fadeToggle(2000);
-        timer();
+        timer(`We can't find the ${input.val()}'s profile`);
       } else {
-        msg.text(XMLHttpRequest.status);
-        // msg.fadeToggle(2000);
-        timer();
+        timer(XMLHttpRequest.status);
       }
     },
   });
 };
 $(".trash").click(() => {
   if (Array.from($(".card-container")).length > 0) {
-    timer();
-    msg.text(`Deletion Completed`);
+    timer(`Deletion Completed`);
     profiles.empty();
   } else {
-    msg.text(`Start searching before deletion`);
-    // msg.fadeToggle(2000);
-    timer();
+    timer(`Start searching before deletion`);
   }
 });
-function timer() {
-  // setTimeout(() => {
-  msg.fadeToggle(2000);
+function timer(message) {
+  // setTimeout(function () {
+  msg.text(message);
   msg.fadeToggle(1000);
-  // });
+  msg.fadeToggle(1000);
+  // }, 1000);
 }
