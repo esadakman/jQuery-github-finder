@@ -4,10 +4,11 @@ const msg = $("section .feedback ");
 const profiles = $("section .profiles");
 form.submit((e) => {
   e.preventDefault();
-  if (input.val().replace(/\s/g, "") === "") {
+  // if (input.val().replace(/\s/g, "") === "") {
+  if (input.val().trim() === "") {
     msg.text("Please enter a valid username");
-    msg.fadeToggle(2000);
     timer();
+    // msg.fadeToggle(2000);
     return;
   }
   getUserData();
@@ -29,10 +30,10 @@ const getUserData = async () => {
         followers,
         login,
       } = response;
-      const profileNamesArray = Array.from($(".card-container")); 
+      const profileNamesArray = Array.from($(".card-container"));
       if (!name || !location) {
         msg.text(`${login} not specified his informations!`);
-        msg.fadeToggle(2000);
+        // msg.fadeToggle(2000);
         timer();
       }
       if (profileNamesArray.length > 0) {
@@ -43,12 +44,12 @@ const getUserData = async () => {
           msg.text(
             `You already searched the ${name}, Please search for another profile`
           );
-          msg.fadeToggle(2000);
+          // msg.fadeToggle(2000);
           timer();
           return;
         } else if (profileNamesArray.length > 5) {
           msg.text(`You can only check for 6 profiles`);
-          msg.fadeToggle(2000);
+          // msg.fadeToggle(2000);
           timer();
           $(".container").append("<hr>");
           return;
@@ -86,21 +87,30 @@ const getUserData = async () => {
     error: (XMLHttpRequest) => {
       if ((XMLHttpRequest.status = 404)) {
         msg.text(`We can't find the ${input.val()}'s profile`);
-        msg.fadeToggle(2000);
+        // msg.fadeToggle(2000);
         timer();
       } else {
         msg.text(XMLHttpRequest.status);
-        msg.fadeToggle(2000);
+        // msg.fadeToggle(2000);
         timer();
       }
     },
   });
 };
-function timer() {
-  setTimeout(() => {
-    msg.fadeToggle(1000);
-  });
-}
 $(".trash").click(() => {
-  profiles.empty(); 
+  if (Array.from($(".card-container")).length > 0) {
+    timer();
+    msg.text(`Deletion Completed`);
+    profiles.empty();
+  } else {
+    msg.text(`Start searching before deletion`);
+    // msg.fadeToggle(2000);
+    timer();
+  }
 });
+function timer() {
+  // setTimeout(() => {
+  msg.fadeToggle(2000);
+  msg.fadeToggle(1000);
+  // });
+}
